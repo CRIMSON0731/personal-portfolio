@@ -1,4 +1,4 @@
-## Instructions to Set Up and Run This Online Portfolio
+## How I executed my codes
 
 This guide will walk you through the steps to set up and run this online portfolio, which is built using HTML, CSS, and JavaScript.
 
