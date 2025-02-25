@@ -1,0 +1,111 @@
+// Add Projects Dynamically
+const projects = [
+    {
+        title: "Optimized airline operations through intelligent flight scheduling.",
+        description: "Developed an algorithm to optimize flight schedules, reducing delays and improving resource allocation. This project significantly enhanced operational efficiency for a major airline.",
+        readMore: false
+    },
+    {
+        title: "Engineered a scalable system for diverse motivational content.",
+        description: "Built a robust platform that delivers personalized motivational content to users, fostering personal growth and development. The system's scalability allows it to handle a large user base.",
+        readMore: false
+    },
+    {
+        title: "Automated weighted average calculations and grade visualization.",
+        description: "Created a tool that automates the calculation of weighted averages and visualizes grades, simplifying academic performance tracking for students and educators.",
+        readMore: false
+    },
+    {
+        title: "Delivered a dynamic portfolio highlighting technical expertise.",
+        description: "Designed and developed a dynamic portfolio website showcasing my technical skills and projects, providing a comprehensive overview of my capabilities to potential employers and collaborators.",
+        readMore: false
+    }
+];
+
+const projectList = document.getElementById("projectList");
+if (projectList) {
+    projects.forEach((project, index) => {
+        const li = document.createElement("li");
+        li.textContent = project.title;
+
+        const description = document.createElement("p");
+        description.textContent = project.description;
+        description.style.display = "none"; // Initially hide the description
+
+        const readMoreButton = document.createElement("button");
+        readMoreButton.textContent = "Read More";
+        readMoreButton.addEventListener("click", () => {
+            project.readMore = !project.readMore;
+            if (project.readMore) {
+                description.style.display = "block";
+                readMoreButton.textContent = "Read Less";
+            } else {
+                description.style.display = "none";
+                readMoreButton.textContent = "Read More";
+            }
+        });
+
+        li.appendChild(readMoreButton);
+        li.appendChild(description);
+        projectList.appendChild(li);
+    });
+}
+
+// Skills
+const skills = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Java",
+    "C++",
+];
+
+const skillsList = document.getElementById("skillsList");
+if (skillsList) {
+    skills.forEach(skill => {
+        const li = document.createElement("li");
+        li.textContent = skill;
+        skillsList.appendChild(li);
+    });
+}
+
+// Toggle Dark Mode
+const themeToggle = document.getElementById("themeToggle");
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+    });
+}
+
+// Contact Form Validation
+const contactForm = document.getElementById("contactForm");
+const formMessage = document.getElementById("formMessage");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        if (name && email && message) {
+            formMessage.textContent = "Thank you for your message!";
+            formMessage.style.color = "green";
+            contactForm.reset();
+        } else {
+            formMessage.textContent = "Please fill out all fields.";
+            formMessage.style.color = "red";
+        }
+    });
+}
+
+// Display Current Date
+function displayCurrentDate() {
+    const currentDateElement = document.getElementById("currentDate");
+    if (currentDateElement) {
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        currentDateElement.textContent = now.toLocaleDateString(undefined, options);
+    }
+}

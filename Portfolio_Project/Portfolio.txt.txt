@@ -1,0 +1,546 @@
+HTML CODE:
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <button id="themeToggle">Toggle Dark Mode</button>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <img src="wow3.jpg" alt="A photo of Alfrancis Juvir C. Delos Trino" class="profile-pic">
+        <p>I'm Alfrancis Juvir C. Delos Trino, a first-year BSIT student driven by the challenge of solving problems with technology. Whether it's crafting efficient algorithms in Java and C++, building dynamic web applications with JavaScript, or designing user-friendly interfaces with HTML and CSS, I'm constantly learning and applying my skills to create meaningful solutions.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Successful projects</h2>
+        <ul id="projectList">
+            </ul>
+    </section>
+
+    <section id="Skills">
+        <h2>Fluent in</h2>
+        <ul id="skillsList">
+            </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <p id="formMessage"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My Portfolio | Current Date: <span id="currentDate"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // JavaScript to display the current date in the footer
+        function displayCurrentDate() {
+            const currentDateElement = document.getElementById("currentDate");
+            if (currentDateElement) {
+                const now = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                currentDateElement.textContent = now.toLocaleDateString(undefined, options);
+            }
+        }
+
+        displayCurrentDate(); // Call the function to display the date when the page loads
+    </script>
+    <script>
+        // Project "read more" functionality in script.js
+        const projects = [
+            {
+                title: "Optimized airline operations through intelligent flight scheduling.",
+                description: "Developed an algorithm to optimize flight schedules, reducing delays and improving resource allocation. This project significantly enhanced operational efficiency for a major airline.",
+                readMore: false
+            },
+            {
+                title: "Engineered a scalable system for diverse motivational content.",
+                description: "Built a robust platform that delivers personalized motivational content to users, fostering personal growth and development. The system's scalability allows it to handle a large user base.",
+                readMore: false
+            },
+            {
+                title: "Automated weighted average calculations and grade visualization.",
+                description: "Created a tool that automates the calculation of weighted averages and visualizes grades, simplifying academic performance tracking for students and educators.",
+                readMore: false
+            },
+            {
+                title: "Delivered a dynamic portfolio highlighting technical expertise.",
+                description: "Designed and developed a dynamic portfolio website showcasing my technical skills and projects, providing a comprehensive overview of my capabilities to potential employers and collaborators.",
+                readMore: false
+            }
+        ];
+
+        // Get the project list element
+        const projectList = document.getElementById("projectList");
+
+        // Check if the project list element exists
+        if (projectList) {
+            // Loop through the projects array
+            projects.forEach((project, index) => {
+                // Create a list item for each project
+                const li = document.createElement("li");
+                li.textContent = project.title;
+
+                // Create a paragraph for the project description
+                const description = document.createElement("p");
+                description.textContent = project.description;
+                description.style.display = "none"; // Initially hide the description
+
+                // Create a button for "Read More" functionality
+                const readMoreButton = document.createElement("button");
+                readMoreButton.textContent = "Read More";
+
+                // Add event listener to the "Read More" button
+                readMoreButton.addEventListener("click", () => {
+                    project.readMore = !project.readMore; // Toggle readMore flag
+                    if (project.readMore) {
+                        description.style.display = "block"; // Show description
+                        readMoreButton.textContent = "Read Less";
+                    } else {
+                        description.style.display = "none"; // Hide description
+                        readMoreButton.textContent = "Read More";
+                    }
+                });
+
+                // Append the button and description to the list item
+                li.appendChild(readMoreButton);
+                li.appendChild(description);
+
+                // Append the list item to the project list
+                projectList.appendChild(li);
+            });
+        }
+
+        // Skills
+        const skills = [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Java",
+            "C++",
+        ];
+
+        // Get the skills list element
+        const skillsList = document.getElementById("skillsList");
+
+        // Check if the skills list element exists
+        if (skillsList) {
+            // Loop through the skills array
+            skills.forEach(skill => {
+                // Create a list item for each skill
+                const li = document.createElement("li");
+                li.textContent = skill;
+
+                // Append the list item to the skills list
+                skillsList.appendChild(li);
+            });
+        }
+
+        // Toggle Dark Mode
+        const themeToggle = document.getElementById("themeToggle");
+
+        // Check if the theme toggle button exists
+        if (themeToggle) {
+            // Add event listener to the theme toggle button
+            themeToggle.addEventListener("click", () => {
+                document.body.classList.toggle("dark-mode"); // Toggle dark mode class on body
+            });
+        }
+
+        // Contact Form Validation
+        const contactForm = document.getElementById("contactForm");
+        const formMessage = document.getElementById("formMessage");
+
+        // Check if the contact form exists
+        if (contactForm) {
+            // Add event listener to the contact form submit event
+            contactForm.addEventListener("submit", (e) => {
+                e.preventDefault(); // Prevent default form submission
+
+                // Get form input values
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const message = document.getElementById("message").value;
+
+                // Check if all fields are filled
+                if (name && email && message) {
+                    formMessage.textContent = "Thank you for your message!";
+                    formMessage.style.color = "green";
+                    contactForm.reset(); // Reset the form
+                } else {
+                    formMessage.textContent = "Please fill out all fields.";
+                    formMessage.style.color = "red";
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+
+JAVASCRIPT CODE:
+// Add Projects Dynamically
+const projects = [
+    {
+        title: "Optimized airline operations through intelligent flight scheduling.",
+        description: "For my introductory C++ research project, I tackled the challenge of optimizing a simplified flight scheduling scenario. Under the guidance of Professor Ma'am Mangrobang, I designed and implemented an algorithm that aimed to minimize potential delays by strategically allocating resources. While it wasn't for a real-world airline, the process of researching scheduling algorithms, translating them into C++ code, and successfully defending my findings was an invaluable learning experience. It allowed me to apply theoretical concepts to a practical problem and gain a deeper understanding of algorithmic efficiency and C++ programming.",
+        readMore: false
+    },
+    {
+        title: "Engineered a scalable system for diverse motivational content.",
+        description: "To showcase my growing proficiency in front-end development, I undertook the creation of a dynamic portfolio website, leveraging HTML, CSS, and JavaScript. While starting with a code template, I significantly expanded and customized it to reflect my personal style and technical capabilities. This involved implementing interactive elements, refining the design for optimal user experience, and ensuring responsiveness across various devices. This project not only served as a practical application of my web development skills but also provided me with valuable insights into the intricacies of front-end design and development.",
+        readMore: false
+    },
+    {
+        title: "Automated weighted average calculations and grade visualization.",
+        description: "My journey into data visualization began with a C++ console application I developed to automate weighted average calculations—a personal solution to the tedious task of grade tracking. Recognizing the potential for a more user-friendly interface, I decided to reimagine the project in Java, focusing on creating a graphical visualization of academic performance. Under the mentorship of Professor Ma'am Lawan, I delved into Java Swing and data visualization libraries, transforming the command-line tool into an intuitive desktop application. This project not only honed my skills in cross-language application development but also demonstrated my ability to adapt and enhance a project based on user experience and expert guidance. The ability to visually represent academic progress, directly resulting from my code, was incredibly rewarding and sparked my interest in data-driven application development.",
+        readMore: false
+    },
+    {
+        title: "Delivered a dynamic portfolio highlighting technical expertise.",
+        description: "Recognizing the importance of a strong online presence for aspiring IT professionals, I set out to design and develop a dynamic portfolio website. With the invaluable mentorship of Professor Tenio, I meticulously crafted a platform to showcase my technical skills and projects.  We focused on creating an intuitive user experience, employing modern front-end techniques and responsive design principles to ensure seamless navigation across devices.  Professor Tenio's insights into effective portfolio presentation and industry best practices were instrumental in refining both the visual design and the content structure.  This project not only solidified my understanding of web development but also equipped me with a powerful tool to effectively communicate my capabilities to potential employers and collaborators, demonstrating my commitment to professional growth.",
+        readMore: false
+    }
+];
+
+const projectList = document.getElementById("projectList");
+if (projectList) {
+    projects.forEach((project, index) => {
+        const li = document.createElement("li");
+        li.textContent = project.title;
+
+        const description = document.createElement("p");
+        description.textContent = project.description;
+        description.style.display = "none"; // Initially hide the description
+
+        const readMoreButton = document.createElement("button");
+        readMoreButton.textContent = "Read More";
+        readMoreButton.addEventListener("click", () => {
+            project.readMore = !project.readMore;
+            if (project.readMore) {
+                description.style.display = "block";
+                readMoreButton.textContent = "Read Less";
+            } else {
+                description.style.display = "none";
+                readMoreButton.textContent = "Read More";
+            }
+        });
+
+        li.appendChild(readMoreButton);
+        li.appendChild(description);
+        projectList.appendChild(li);
+    });
+}
+
+// Skills
+const skills = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Java",
+    "C++",
+];
+
+const skillsList = document.getElementById("skillsList");
+if (skillsList) {
+    skills.forEach(skill => {
+        const li = document.createElement("li");
+        li.textContent = skill;
+        skillsList.appendChild(li);
+    });
+}
+
+// Toggle Dark Mode
+const themeToggle = document.getElementById("themeToggle");
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+    });
+}
+
+// Contact Form Validation
+const contactForm = document.getElementById("contactForm");
+const formMessage = document.getElementById("formMessage");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        if (name && email && message) {
+            formMessage.textContent = "Thank you for your message!";
+            formMessage.style.color = "green";
+            contactForm.reset();
+        } else {
+            formMessage.textContent = "Please fill out all fields.";
+            formMessage.style.color = "red";
+        }
+    });
+}
+
+// Display Current Date
+function displayCurrentDate() {
+    const currentDateElement = document.getElementById("currentDate");
+    if (currentDateElement) {
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        currentDateElement.textContent = now.toLocaleDateString(undefined, options);
+    }
+}
+
+
+CSS CODE:
+:root {
+    --light-green: #6afd6a; /* Light green background for light mode */
+    --darker-green: #46c246; /* Darker green for sections in light mode */
+    --header-green: #1dcf1d; /* Green for header and list items in light mode */
+    --text-color: #333; /* Default text color in light mode */
+    --dark-mode-bg: #006400; /* Dark green background for dark mode */
+    --dark-mode-header: #004000; /* Darker green for header in dark mode */
+    --dark-mode-section: #008000; /* Darker green for sections in dark mode */
+    --dark-mode-li: #00C000; /* Darker green for list items in dark mode */
+    --button-bg: #29CC29; /* Button background color */
+    --button-hover-bg: #22AA22; /* Button hover background color */
+    --button-color: #000000; /* Button text color */
+    --white: #ffffff; /* White color */
+    --light-gray: #ccc; /* Light gray color */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-green); /* Set light green background */
+    color: var(--text-color); /* Set default text color */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for dark mode */
+}
+
+header {
+    background-color: var(--header-green); /* Set header green background */
+    color: var(--button-color); /* Set button text color */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 4.5em;
+    font-weight: 800;
+}
+
+.button,
+#themeToggle {
+    background-color: #44D944; /* Set button background color */
+    color: var(--button-color); /* Set button text color */
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.button:hover,
+#themeToggle:hover {
+    background-color: var(--button-hover-bg); /* Set hover background color */
+}
+
+.button:focus,
+#themeToggle:focus {
+    outline: 2px solid #000; /* Set focus outline */
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: var(--darker-green); /* Set section background color */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: var(--button-color); /* Set heading color */
+}
+
+#about .profile-pic {
+    max-width: 700px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#about h2 {
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#about p {
+    font-size: 1.7em;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--button-color); /* Set paragraph color */
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: var(--header-green); /* Set list item background color */
+    margin: 5px 0;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1.7em;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--button-color); /* Set list item text color */
+    margin-bottom: 8px;
+}
+
+#projects ul li,
+#skills ul li {
+    font-size: 1.7em;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--button-color); /* Set list item text color */
+    margin-bottom: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+form input,
+form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--button-color);
+    border-radius: 5px;
+    transition: border-color 0.3s ease; /* Smooth focus transition */
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #000; /* Set focus border color */
+}
+
+form button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--button-bg); /* Set form button background color */
+    color: var(--button-color); /* Set form button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+form button:hover {
+    background-color: var(--button-hover-bg); /* Set form button hover background color */
+}
+
+form button:focus {
+    outline: 2px solid #000; /* Set form button focus outline */
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--button-bg); /* Set footer background color */
+    color: var(--button-color); /* Set footer text color */
+    margin-top: 20px;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #006400; /* Reverted to original dark mode background */
+    color: #ffffff !important; /* Force white text */
+}
+
+body.dark-mode header {
+    background-color: #004000; /* Reverted to original dark mode header */
+    color: #ffffff !important;
+}
+
+body.dark-mode section {
+    background-color: #008000; /* Reverted to original dark mode section */
+    color: #ffffff !important;
+}
+
+body.dark-mode ul li {
+    background-color: #00C000; /* Reverted to original dark mode list items */
+    color: #ffffff !important;
+}
+
+/* Specific Dark Mode Overrides */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode p,
+body.dark-mode a,
+body.dark-mode label,
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode button,
+body.dark-mode #about,
+body.dark-mode #about h2,
+body.dark-mode #about p,
+body.dark-mode #skills,
+body.dark-mode #skills h2,
+body.dark-mode #skills ul li,
+body.dark-mode #projects ul li,
+body.dark-mode #projectList li button {
+    color: #ffffff !important; /* Force white text */
+}
+
+/* Override input placeholder color */
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #ccc !important; /* Force light gray placeholder text */
+}
+
+/* Optional: Override focus outline for better visibility */
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode button:focus,
+body.dark-mode #themeToggle

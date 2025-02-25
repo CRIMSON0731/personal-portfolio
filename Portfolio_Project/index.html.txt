@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <button id="themeToggle">Toggle Dark Mode</button>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <img src="wow3.jpg" alt="A photo of Alfrancis Juvir C. Delos Trino" class="profile-pic">
+        <p>I'm Alfrancis Juvir C. Delos Trino, a first-year BSIT student driven by the challenge of solving problems with technology. Whether it's crafting efficient algorithms in Java and C++, building dynamic web applications with JavaScript, or designing user-friendly interfaces with HTML and CSS, I'm constantly learning and applying my skills to create meaningful solutions.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Successful projects</h2>
+        <ul id="projectList">
+        </ul>
+    </section>
+
+    <section id="Skills">
+        <h2>Fluent in</h2>
+        <ul id="skillsList">
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <p id="formMessage"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My Portfolio | Current Date: <span id="currentDate"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // JavaScript to display the current date in the footer
+        function displayCurrentDate() {
+            const currentDateElement = document.getElementById("currentDate");
+            if (currentDateElement) {
+                const now = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                currentDateElement.textContent = now.toLocaleDateString(undefined, options);
+            }
+        }
+
+        displayCurrentDate(); // Call the function to display the date when the page loads
+    </script>
+    <script>
+    //project "read more" functionality in script.js
+    const projects = [
+        {
+            title: "Optimized airline operations through intelligent flight scheduling.",
+            description: "Developed an algorithm to optimize flight schedules, reducing delays and improving resource allocation. This project significantly enhanced operational efficiency for a major airline.",
+            readMore: false
+        },
+        {
+            title: "Engineered a scalable system for diverse motivational content.",
+            description: "Built a robust platform that delivers personalized motivational content to users, fostering personal growth and development. The system's scalability allows it to handle a large user base.",
+            readMore: false
+        },
+        {
+            title: "Automated weighted average calculations and grade visualization.",
+            description: "Created a tool that automates the calculation of weighted averages and visualizes grades, simplifying academic performance tracking for students and educators.",
+            readMore: false
+        },
+        {
+            title: "Delivered a dynamic portfolio highlighting technical expertise.",
+            description: "Designed and developed a dynamic portfolio website showcasing my technical skills and projects, providing a comprehensive overview of my capabilities to potential employers and collaborators.",
+            readMore: false
+        }
+    ];
+
+    const projectList = document.getElementById("projectList");
+    if (projectList) {
+        projects.forEach((project, index) => {
+            const li = document.createElement("li");
+            li.textContent = project.title;
+
+            const description = document.createElement("p");
+            description.textContent = project.description;
+            description.style.display = "none"; // Initially hide the description
+
+            const readMoreButton = document.createElement("button");
+            readMoreButton.textContent = "Read More";
+            readMoreButton.addEventListener("click", () => {
+                project.readMore = !project.readMore;
+                if (project.readMore) {
+                    description.style.display = "block";
+                    readMoreButton.textContent = "Read Less";
+                } else {
+                    description.style.display = "none";
+                    readMoreButton.textContent = "Read More";
+                }
+            });
+
+            li.appendChild(readMoreButton);
+            li.appendChild(description);
+            projectList.appendChild(li);
+        });
+    }
+
+    // Skills
+    const skills = [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Java",
+        "C++",
+    ];
+
+    const skillsList = document.getElementById("skillsList");
+    if (skillsList) {
+        skills.forEach(skill => {
+            const li = document.createElement("li");
+            li.textContent = skill;
+            skillsList.appendChild(li);
+        });
+    }
+
+    // Toggle Dark Mode
+    const themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+        });
+    }
+
+    // Contact Form Validation
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            if (name && email && message) {
+                formMessage.textContent = "Thank you for your message!";
+                formMessage.style.color = "green";
+                contactForm.reset();
+            } else {
+                formMessage.textContent = "Please fill out all fields.";
+                formMessage.style.color = "red";
+            }
+        });
+    }
+    </script>
+</body>
+
+</html>

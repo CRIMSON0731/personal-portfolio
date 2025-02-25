@@ -1,0 +1,262 @@
+:root {
+    --light-green: #6afd6a;
+    --darker-green: #46c246;
+    --header-green: #1dcf1d;
+    --text-color: #333;
+    --dark-mode-bg: #006400;
+    --dark-mode-header: #004000;
+    --dark-mode-section: #008000;
+    --dark-mode-li: #00C000;
+    --button-bg: #29CC29;
+    --button-hover-bg: #22AA22;
+    --button-color: #000000;
+    --white: #ffffff;
+    --light-gray: #ccc;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-green);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    background-color: var(--header-green);
+    color: var(--button-color);
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 4.5em;
+    font-weight: 800;
+}
+
+.button,
+#themeToggle {
+    background-color: #44D944;
+    color: var(--button-color);
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover,
+#themeToggle:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.button:focus,
+#themeToggle:focus {
+    outline: 2px solid #000;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: var(--darker-green);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: var(--button-color);
+}
+
+#about .profile-pic {
+    max-width: 700px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#about h2 {
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#about p {
+    font-size: 1.7em;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--button-color);
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: var(--header-green);
+    margin: 5px 0;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1.7em;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--button-color);
+    margin-bottom: 8px;
+}
+
+#projects ul li,
+#skills ul li {
+    font-size: 1.7em;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--button-color);
+    margin-bottom: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+form input,
+form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--button-color);
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #000;
+}
+
+form button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+form button:focus {
+    outline: 2px solid #000;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    margin-top: 20px;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #006400; /* Reverted to original dark mode background */
+    color: #ffffff !important; /* Force white text */
+}
+
+body.dark-mode header {
+    background-color: #004000; /* Reverted to original dark mode header */
+    color: #ffffff !important;
+}
+
+body.dark-mode section {
+    background-color: #008000; /* Reverted to original dark mode section */
+    color: #ffffff !important;
+}
+
+body.dark-mode ul li {
+    background-color: #00C000; /* Reverted to original dark mode list items */
+    color: #ffffff !important;
+}
+
+/* Specific Dark Mode Overrides */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode p,
+body.dark-mode a,
+body.dark-mode label,
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode button,
+body.dark-mode #about,
+body.dark-mode #about h2,
+body.dark-mode #about p,
+body.dark-mode #skills,
+body.dark-mode #skills h2,
+body.dark-mode #skills ul li,
+body.dark-mode #projects ul li,
+body.dark-mode #projectList li button {
+    color: #ffffff !important;
+}
+
+/* Override input placeholder color */
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #ccc !important;
+}
+
+/* Optional: Override focus outline for better visibility */
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode button:focus,
+body.dark-mode #themeToggle:focus,
+body.dark-mode #projectList li button:focus {
+    outline: 2px solid #fff !important;
+}
+
+/* Read More Button Styles */
+#projectList li button {
+    background-color: var(--header-green);
+    color: var(--button-color);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#projectList li button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+#projectList li button:focus {
+    outline: 2px solid #000;
+}
+
+body.dark-mode #projectList li button {
+    background-color: #00C000 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode #projectList li button:hover {
+    background-color: #00A000 !important;
+}
